@@ -18,7 +18,7 @@ module "security_groups" {
 
 # vpc endpoints module
 module "vpc_endpoints" {
-  source            = "./modules/vpc-endpoints"
+  source            = "./modules/vpc_endpoints"
   cluster_name      = var.cluster_name
   aws_region        = var.aws_region
   vpc_id            = module.vpc.vpc_id
