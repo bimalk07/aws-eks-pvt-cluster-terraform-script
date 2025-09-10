@@ -1,54 +1,91 @@
-variable "cluster_name" {
-  description = "EKS cluster name"
+variable "aws_region" {
   type        = string
+  description = "AWS region"
 }
 
 variable "cluster_version" {
-  description = "EKS Kubernetes version"
   type        = string
-  default     = "1.28"
+  description = "Kubernetes version for the EKS cluster"
 }
 
-variable "aws_region" {
-  description = "AWS region"
+variable "cluster_name" {
   type        = string
+  description = "Name of the EKS cluster"
 }
 
-variable "private_subnet_ids" {
-  description = "List of private subnet IDs for the EKS cluster and node groups"
+
+variable "cluster_role_arn" {
+  type        = string
+  description = "IAM role ARN for the EKS cluster"
+}
+
+variable "private_subnets_ids" {
   type        = list(string)
+  description = "List of private subnet IDs"
 }
 
-variable "iam_role_arn" {
-  description = "IAM role ARN for the EKS control plane"
-  type        = string
+variable "endpoint_private_access" {
+  type        = bool
+  description = "Enable private endpoint access"
 }
 
-variable "node_role_arn" {
-  description = "IAM role ARN for the EKS worker node group"
-  type        = string
+variable "endpoint_public_access" {
+  type        = bool
+  description = "Enable public endpoint access"
 }
 
-variable "node_group_instance_types" {
-  description = "EC2 instance types for the EKS node group"
+variable "public_access_cidrs" {
   type        = list(string)
-  default     = ["t2.medium"]
+  description = "List of CIDRs allowed for public endpoint access"
+}
+
+variable "enabled_cluster_log_types" {
+  type        = list(string)
+  description = "Types of logs to enable for EKS cluster"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags for the EKS cluster"
+}
+
+
+variable "node_group_role_arn" {
+  type        = string
+  description = "IAM role ARN for the EKS node group"
 }
 
 variable "node_group_desired" {
-  description = "Desired number of worker nodes"
   type        = number
-  default     = 2
+  description = "Desired size of the node group"
 }
 
 variable "node_group_min" {
-  description = "Minimum number of worker nodes"
   type        = number
-  default     = 1
+  description = "Minimum size of the node group"
 }
 
 variable "node_group_max" {
-  description = "Maximum number of worker nodes"
   type        = number
-  default     = 3
+  description = "Maximum size of the node group"
+}
+
+variable "ami_type" {
+  type        = string
+  description = "AMI type for the node group"
+}
+
+variable "node_group_instance_types" {
+  type        = list(string)
+  description = "List of instance types for the node group"
+}
+
+variable "ec2_ssh_key" {
+  type        = string
+  description = "EC2 SSH key name"
+}
+
+variable "node_group_tags" {
+  type        = map(string)
+  description = "Tags for the node group"
 }
