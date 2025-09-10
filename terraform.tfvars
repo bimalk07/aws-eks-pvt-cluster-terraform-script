@@ -93,3 +93,8 @@ s3_service_name             = "s3"
 s3_vpc_endpoint_type        = "Gateway"
 interface_vpc_endpoint_type = "Interface"
 private_dns_enabled         = true
+
+# Bastion Host Configuration
+bastion_key_name = "eks-bastion-key"  # The name you gave the key in the AWS Console
+my_ip            = "0.0.0.0"          # <-- IMPORTANT: Replace with your actual IP. You can google "what is my ip"
+bastion_ami_id   = "ami-0cc44988d4c965158" # Amazon Linux 2 AMI for eu-west-3 (Paris). Change if your region is different.

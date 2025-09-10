@@ -88,3 +88,23 @@ module "vpc_endpoints" {
   interface_vpc_endpoint_type = var.interface_vpc_endpoint_type
   private_dns_enabled         = var.private_dns_enabled
 }
+
+resource "aws_security_group_rule" "allow_bastion_to_eks" {
+  type                     = "ingress"
+  from_port                = 443 # HTTPS port for the Kubernetes API
+  to_port                  = 443
+  protocol                 = "tcp"
+  security_group_id        = module.eks.cluster_security_group_id
+  source_security_group_id = module.bastion.bastion_sg_id
+  description              = "Allow Bastion to access EKS control plane"
+}
+
+module "bastion" {
+  source           = "./modules/bastion"
+  cluster_name     = var.cluster_name
+  vpc_id           = module.vpc.vpc_id
+  public_subnet_id = module.vpc.public_subnet_ids[0] # Place it in the first public subnet
+  key_name         = var.bastion_key_name
+  my_ip            = var.my_ip
+  ami_id           = var.bastion_ami_id
+}

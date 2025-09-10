@@ -288,3 +288,19 @@ variable "private_dns_enabled" {
   description = "Enable private DNS for VPC interface endpoints."
   type        = bool
 }
+
+# bastion host
+variable "bastion_key_name" {
+  description = "The name of the EC2 key pair to use for the bastion host."
+  type        = string
+}
+
+variable "my_ip" {
+  description = "Your local public IP address for SSH access to the bastion."
+  type        = string
+}
+
+variable "bastion_ami_id" {
+  description = "The AMI to use for the bastion. Should be an Amazon Linux 2 AMI."
+  type        = string
+}
