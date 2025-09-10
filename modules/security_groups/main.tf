@@ -2,7 +2,7 @@
 resource "aws_security_group" "workers" {
   name        = "${var.cluster_name}-workers-sg"
   description = "Security group for EKS worker nodes"
-  vpc_id      = aws_vpc.this.id
+  vpc_id      = var.vpc_id
 
   # allow nodes to talk to each other
   ingress {

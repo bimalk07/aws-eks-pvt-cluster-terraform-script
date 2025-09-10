@@ -1,11 +1,11 @@
 variable "aws_region" {
   type    = string
-  default = "us-west-1" # change as needed
+  default = "eu-west-3" # change as needed
 }
 
 variable "cluster_name" {
   type    = string
-  default = "private-eks-cluster"
+  default = "private-eks-cluster-bimal"
 }
 
 variable "vpc_cidr" {
@@ -51,4 +51,10 @@ variable "node_group_max" {
 variable "cluster_version" {
   type    = string
   default = "1.28"
+}
+
+variable "environment" {
+  type        = string
+  default     = "dev" # or "prod", "staging" etc.
+  description = "Deployment environment name (e.g., dev, staging, prod)"
 }

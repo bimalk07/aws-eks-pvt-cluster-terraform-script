@@ -2,10 +2,10 @@
 resource "aws_eks_cluster" "this" {
   name     = var.cluster_name
   version  = var.cluster_version
-  role_arn = aws_iam_role.eks_cluster.arn
+  role_arn = var.iam_role_arn
 
   vpc_config {
-    subnet_ids              = [for s in aws_subnet.private : s.id]
+    subnet_ids              = var.private_subnet_ids
     endpoint_private_access = true
     endpoint_public_access  = false
     # You can provide cluster_security_group_id to control access; leaving default and will reference later
@@ -40,8 +40,8 @@ resource "local_file" "kubeconfig" {
 resource "aws_eks_node_group" "managed_nodes" {
   cluster_name    = aws_eks_cluster.this.name
   node_group_name = "${var.cluster_name}-ng"
-  node_role_arn   = aws_iam_role.node_group.arn
-  subnet_ids      = [for s in aws_subnet.private : s.id]
+  node_role_arn   = var.node_role_arn
+  subnet_ids      = var.private_subnet_ids
 
   scaling_config {
     desired_size = var.node_group_desired
