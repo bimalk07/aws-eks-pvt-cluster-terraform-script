@@ -304,3 +304,8 @@ variable "bastion_ami_id" {
   description = "The AMI to use for the bastion. Should be an Amazon Linux 2 AMI."
   type        = string
 }
+
+variable "bastion_instance_type" {
+  description = "The EC2 instance type to use for the bastion host."
+  type        = string
+}

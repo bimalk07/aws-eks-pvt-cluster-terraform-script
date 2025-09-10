@@ -107,4 +107,5 @@ module "bastion" {
   key_name         = var.bastion_key_name
   my_ip            = var.my_ip
   ami_id           = var.bastion_ami_id
+  instance_type    = var.bastion_instance_type
 }

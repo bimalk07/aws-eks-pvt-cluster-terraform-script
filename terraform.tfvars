@@ -98,3 +98,4 @@ private_dns_enabled         = true
 bastion_key_name = "eks-bastion-key"  # key name in the AWS Console
 my_ip            = "0.0.0.0"          # Replace with actual IP
 bastion_ami_id   = "ami-0cc44988d4c965158" # Amazon Linux 2 AMI
+bastion_instance_type = "t3.micro"

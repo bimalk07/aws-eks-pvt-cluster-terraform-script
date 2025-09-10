@@ -28,7 +28,7 @@ variable "key_name" {
 variable "instance_type" {
   description = "The EC2 instance type for the bastion."
   type        = string
-  default     = "t3.micro"
+  # default     = "t3.micro"
 }
 
 variable "ami_id" {
