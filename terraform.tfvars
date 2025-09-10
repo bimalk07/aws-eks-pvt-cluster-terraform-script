@@ -19,9 +19,3 @@ node_group_max            = 3
 
 # Cluster version
 cluster_version = "1.28"
-
-# IAM (optional)
-enable_ssm = true
-tags = {
-  Environment = "dev"
-}
